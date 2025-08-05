@@ -3,7 +3,6 @@
 
   // Music and interaction variables
   let isPlaying = false;
-  let musicProgress = 0;
   let musicInterval;
   let selectedReaction = null;
 
@@ -243,36 +242,34 @@
     function toggleMusic() {
     const playBtn = document.getElementById('playBtn');
     const progressBar = document.getElementById('progressBar');
-    const music = document.getElementById('music'); // ambil elemen audio
-
+    const music = document.getElementById('music');
+  
     if (!isPlaying) {
       isPlaying = true;
       playBtn.textContent = '⏸️';
-
+  
       music.play().catch(err => {
-        console.warn("Gagal play musik:", err);
+        console.warn("Gagal memutar musik:", err);
       });
-
+  
       musicInterval = setInterval(() => {
-        // update progress bar berdasarkan waktu
         const progress = (music.currentTime / music.duration) * 100;
         progressBar.style.width = progress + '%';
       }, 200);
-
-      // tetap tampilkan final section setelah 3 detik
+  
       setTimeout(() => {
         document.getElementById("finalSection").style.display = "block";
         createFloatingHearts();
       }, 3000);
-
+  
     } else {
       isPlaying = false;
       playBtn.textContent = '▶️';
-
       music.pause();
       clearInterval(musicInterval);
     }
   }
+
 
   // Final section functions
   function createNewMessage() {
