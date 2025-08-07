@@ -414,14 +414,18 @@
           setTimeout(typeMessage, typingSpeed);
         } else {
           // Show image after typing is complete
+         // Show image after typing is complete
+        setTimeout(() => {
+          document.getElementById("confessImage").style.display = "block";
+          
+          // TAMBAHKAN BARIS INI UNTUK MENAMPILKAN TEKS DI BAWAH GAMBAR
+          document.getElementById("imageCaption").style.display = "block";
+          
+          // Show reaction section after image
           setTimeout(() => {
-            document.getElementById("confessImage").style.display = "block";
-            
-            // Show reaction section after image
-            setTimeout(() => {
-              document.getElementById("reactionSection").style.display = "block";
-            }, 1500);
-          }, 800);
+            document.getElementById("reactionSection").style.display = "block";
+          }, 1500);
+        }, 800);
         }
       }
       
@@ -1667,6 +1671,26 @@ Waktu: ${new Date().toLocaleDateString('id-ID', {
       transform: translateY(-100px) translateX(50px);
     }
   }
+.image-caption {
+  display: none; /* Penting: Sembunyikan secara default */
+  text-align: center;
+  margin-top: 1.5rem;
+  font-style: italic;
+  color: #666;
+  animation: fadeIn 1s ease-out; /* Efek muncul yang manis */
+}
+
+/* Tambahkan juga keyframes untuk animasi fadeIn jika belum ada */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
 </style>
 </head>
 <body>
@@ -1707,6 +1731,7 @@ Waktu: ${new Date().toLocaleDateString('id-ID', {
 
   <div id="messageDisplay" class="message-display"></div>
   <img id="confessImage" class="confess-image" src="IMG-20250804-WA0063.jpg" alt="Confess Image" />
+<p id="imageCaption" class="image-caption">Ini Foto take pertama kita hahahaa.....</p>
 
   <!-- Reaction Section -->
   <div id="reactionSection" class="reaction-section">
@@ -1731,7 +1756,7 @@ Waktu: ${new Date().toLocaleDateString('id-ID', {
       </div>
       <div class="polaroid" onclick="showMemory(2)">
         <div class="polaroid-img">🍕</div>
-        <div class="polaroid-caption">Diskusi sambil makan</div>
+        <div class="polaroid-caption">Diskusi Hal Random</div>
       </div>
       <div class="polaroid" onclick="showMemory(3)">
         <div class="polaroid-img">🎭</div>
